@@ -168,6 +168,7 @@ class BaseHub(object):
                 cur.parent = self.greenlet
         except ValueError:
             pass  # gets raised if there is a greenlet parent cycle
+        del cur, switch_out
         clear_sys_exc_info()
         return self.greenlet.switch()
 

@@ -26,6 +26,7 @@ def sleep(seconds=0):
     current = getcurrent()
     assert hub.greenlet is not current, 'do not call blocking functions from the mainloop'
     timer = hub.schedule_call_global(seconds, current.switch)
+    del current
     try:
         hub.switch()
     finally:
